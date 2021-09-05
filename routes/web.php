@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-});
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'home']);
+Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
+
+Route::get('/articles', [\App\Http\Controllers\ArticlesController::class, 'liste']);
