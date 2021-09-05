@@ -4,26 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class ArticleStatus extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'article_status';
 
     /**
      * @var integer
      */
     protected $primaryKey = 'id';
 
-
     protected $fillable = [
-        'name',
-        'email',
-        'created_at',
-        'updated_at'
+        'code',
+        'label',
     ];
 
-    public $timestamps=true;
+    public $timestamps=false;
 
 }
