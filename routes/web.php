@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'home']);
 Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
 
-Route::get('/articles', [\App\Http\Controllers\ArticlesController::class, 'liste']);
+Route::get('/articles', [\App\Http\Controllers\ArticlesController::class, 'list']);
+Route::post('/articles', [\App\Http\Controllers\ArticlesController::class, 'store']);
 
 Route::get('/doc-api', [\App\Http\Controllers\DocController::class, 'swagger']);
