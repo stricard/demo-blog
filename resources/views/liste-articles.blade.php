@@ -59,7 +59,6 @@
                 <div class="col-4">
                     <label for="inputPublicatedDate" class="form-label">Date de publication</label>
                     <input type="datetime-local" class="form-control" id="inputPublicatedDate" aria-describedby="publicatedDateHelp">
-                    <div id="publicatedDateHelp" class="form-text">Ne doit pas dépasser 128 caractères</div>
                 </div>
                 <div class="col-4">
                     <label for="inputAuteur" class="form-label">Auteur</label>
