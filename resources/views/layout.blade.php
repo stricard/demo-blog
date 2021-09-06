@@ -14,6 +14,8 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
 
+    @yield('scripts')
+
     <title>Demo Blog - @yield('title')</title>
 </head>
 <body>
@@ -28,6 +30,7 @@
                     <div class="navbar-nav">
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="./">Home</a>
                         <a class="nav-link {{ Request::is('articles') ? 'active' : '' }}" href="./articles">Articles</a>
+                        <a class="nav-link {{ Request::is('doc-api') ? 'active' : '' }}" href="./doc-api">Doc API</a>
                     </div>
                 </div>
             </div>

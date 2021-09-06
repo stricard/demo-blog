@@ -17,3 +17,5 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'home']);
 Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
 
 Route::get('/articles', [\App\Http\Controllers\ArticlesController::class, 'liste']);
+
+Route::get('/doc-api', [\App\Http\Controllers\DocController::class, 'swagger']);
