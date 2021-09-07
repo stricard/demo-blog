@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Liste des articles')
+@section('title', 'Documentation API')
 
 @section('scripts')
     <link rel="stylesheet" type="text/css" href="{{ asset('swagger/swagger-ui.css') }}" />

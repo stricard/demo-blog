@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Documentation des API disponible pour gérer les articles de notre application",
+        "description": "Documentation des API disponibles pour gérer les articles de notre application",
         "version": "0.1.1",
         "title": "Demo Blog",
         "contact": {
@@ -20,7 +20,7 @@
             "description": "Permet de gérer les articles de l'application"
         },
         {
-            "name": "articles-status",
+            "name": "article-status",
             "description": "Permet de gérer les différents statuts d'un article"
         }
     ],
@@ -60,9 +60,12 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "Succès - Ressource créée",
+                        "description": "Succès - Ressource créée"
+                    },
+                    "400": {
+                        "description": "Paramètres invalides",
                         "schema": {
-                            "$ref": "#/definitions/ApiResponse"
+                            "$ref": "#/definitions/400_ValidationError"
                         }
                     }
                 },
@@ -109,7 +112,10 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid status value"
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
                     }
                 },
                 "security": [
@@ -147,11 +153,11 @@
                             "$ref": "#/definitions/User"
                         }
                     },
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    },
                     "404": {
-                        "description": "User not found"
+                        "description": "Ressource inexistante",
+                        "schema": {
+                            "$ref": "#/definitions/404_ResourceNotFound"
+                        }
                     }
                 },
                 "security": [
@@ -198,14 +204,23 @@
                     }
                 ],
                 "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
                     },
                     "404": {
-                        "description": "Pet not found"
-                    },
-                    "405": {
-                        "description": "Validation exception"
+                        "description": "Ressource inexistante",
+                        "schema": {
+                            "$ref": "#/definitions/404_ResourceNotFound"
+                        }
                     }
                 },
                 "security": [
@@ -218,7 +233,7 @@
                 "tags": [
                     "users"
                 ],
-                "summary": "Modifie un utilisateur existant",
+                "summary": "Supprime un utilisateur",
                 "description": "",
                 "operationId": "deleteUser",
                 "produces": [
@@ -235,8 +250,322 @@
                     }
                 ],
                 "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
                     "400": {
-                        "description": "Invalid ID supplied"
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/articles": {
+            "post": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Enregistre un nouvel article",
+                "description": "",
+                "operationId": "storeArticle",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Titre de l'article",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "contents",
+                        "in": "formData",
+                        "description": "Contenu de l'article",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "publication_date",
+                        "in": "formData",
+                        "description": "Date de publication",
+                        "required": false,
+                        "type": "string",
+                        "format": "datetime"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "description": "Id de l'auteur",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "status_id",
+                        "in": "formData",
+                        "description": "Id du statut de l'article",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Succès - Ressource créée",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    },
+                    "400": {
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Récupère une liste d'articles",
+                "description": "Des filtres sont disponibles pour ne pas récupérer tous les articles",
+                "operationId": "findArticles",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Titre de l'article",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "autor",
+                        "in": "query",
+                        "description": "Nom de l'auteur",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Article"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/articles/{articleId}": {
+            "get": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Récupère les infos d'un article",
+                "description": "Retourne les données d'un seul article",
+                "operationId": "getArticleById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Id de l'article",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    },
+                    "404": {
+                        "description": "Ressource inexistante",
+                        "schema": {
+                            "$ref": "#/definitions/404_ResourceNotFound"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Modifie un article existant",
+                "description": "",
+                "operationId": "updateArticle",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Id de l'article",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Titre de l'article",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "contents",
+                        "in": "formData",
+                        "description": "Contenu de l'article",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status_id",
+                        "in": "formData",
+                        "description": "Id du statut de l'article",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "publication_date",
+                        "in": "formData",
+                        "description": "Date de publication",
+                        "required": false,
+                        "type": "string",
+                        "format": "datetime"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Article"
+                        }
+                    },
+                    "400": {
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
+                    },
+                    "404": {
+                        "description": "Ressource inexistante",
+                        "schema": {
+                            "$ref": "#/definitions/404_ResourceNotFound"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Passe l'article en statut \"SUPPRIME\"",
+                "description": "",
+                "operationId": "deleteArticle",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "articleId",
+                        "in": "path",
+                        "description": "Id de l'article",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Paramètres invalides",
+                        "schema": {
+                            "$ref": "#/definitions/400_ValidationError"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/article-status": {
+            "get": {
+                "tags": [
+                    "article-status"
+                ],
+                "summary": "Récupère la liste des status possibles pour un article",
+                "description": "",
+                "operationId": "getListArticleStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ArticleStatus"
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -250,59 +579,157 @@
     "securityDefinitions": {
         "api_key": {
             "type": "apiKey",
-            "name": "apikey",
+            "name": "api-key",
             "in": "header"
         }
     },
     "definitions": {
-        "ApiResponse": {
-            "type": "object",
-            "properties": {
-                "code": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
         "User": {
             "type": "object",
             "properties": {
                 "id": {
                     "type": "integer",
-                    "format": "int64"
+                    "format": "int64",
+                    "example": 1
                 },
-                "username": {
-                    "type": "string"
-                },
-                "firstName": {
-                    "type": "string"
-                },
-                "lastName": {
-                    "type": "string"
+                "name": {
+                    "type": "string",
+                    "example": "Sylvain"
                 },
                 "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "userStatus": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "User Status"
+                    "type": "string",
+                    "example": "tricard.sylvain@gmail.com"
                 }
             },
             "xml": {
                 "name": "User"
+            }
+        },
+        "Article": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Comment documenter une API ?"
+                },
+                "contents": {
+                    "type": "string",
+                    "example": "lorem ipsum"
+                },
+                "publicated_at": {
+                    "type": "string",
+                    "format": "datetime",
+                    "example": "2021-09-14 18:00"
+                },
+                "user": {
+                    "$ref": "#/definitions/User"
+                },
+                "article_status": {
+                    "$ref": "#/definitions/ArticleStatus"
+                }
+            },
+            "xml": {
+                "name": "Article"
+            }
+        },
+        "ArticleStatus": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1
+                },
+                "code": {
+                    "type": "string",
+                    "example": "BROUILLON"
+                },
+                "label": {
+                    "type": "string",
+                    "example": "brouillon"
+                }
+            },
+            "xml": {
+                "name": "ArticleStatus"
+            }
+        },
+        "400_ValidationError": {
+            "description": "Your request parameters didn't validate.",
+            "required": [
+                "status",
+                "type",
+                "title",
+                "invalid-params"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "example": "problems/validation-error"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Your request parameters didn't validate."
+                },
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": "400"
+                },
+                "invalid-params": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InvalidParams"
+                    }
+                }
+            }
+        },
+        "InvalidParams": {
+            "description": "Invalid params list.",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "email"
+                },
+                "reason": {
+                    "type": "string",
+                    "example": "must be a valid email address"
+                }
+            }
+        },
+        "404_ResourceNotFound": {
+            "description": "The resource you looking for can't be found.",
+            "required": [
+                "type",
+                "title",
+                "status",
+                "detail"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "example": "/problems/resource-not-found"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "The resource you looking for can't be found."
+                },
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 404
+                },
+                "detail": {
+                    "type": "string",
+                    "example": "[Model] [id] appear to be not existing "
+                }
             }
         }
     },
