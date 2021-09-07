@@ -21,8 +21,6 @@ class Article extends JsonResource
             'publicated_at' => $this->publicated_at,
             'user_id' => $this->user_id,
             'status_id' => $this->status_id,
-            'created_at' => $this->created_at,
-            'update_at' => $this->update_at,
         ];
     }
 }
