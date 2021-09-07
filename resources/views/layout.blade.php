@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -19,7 +19,7 @@
 
     <title>Demo Blog - @yield('title')</title>
 </head>
-<body>
+<body style="position: relative; min-height: 100%;">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -42,11 +42,11 @@
         @yield('main')
     </main>
 
-    <footer class="footer">
+    <footer class="footer" style="position: absolute; bottom: 0; width: 100%;">
         <div class="container text-center">
             <br><br>
             <hr>
-            <span class="text-muted">© 2018 Sylvain Tricard</span>
+            <span class="text-muted">© 2021 Sylvain Tricard</span>
             <br><br>
         </div>
     </footer>

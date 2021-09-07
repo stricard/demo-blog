@@ -27,20 +27,5 @@
             </tbody>
         </table>
         <br><br>
-        <h2>Ajouter un utilisateur</h2>
-        <br><br>
-        <form class="row" name="form-creation-utilisateur" method="POST" action="/users">
-            @csrf
-            <div class="col-md-4">
-                <input type="text" class="form-control col-md-4" id="nameUser" name="name" placeholder="Nom utilisateur">
-            </div>
-            <div class="col-md-4">
-                <input type="email" class="form-control" id="emailUser" name="email" placeholder="Email utilisateur">
-            </div>
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
-            </div>
-        </form>
-        <br><br>
     </div>
 @endsection
