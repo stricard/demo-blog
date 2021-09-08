@@ -20,7 +20,7 @@ Route::group([
         'store', 'show', 'index', 'update', 'destroy'
     ]);
 
-    Route::apiResource('articles', \App\Http\Controllers\API\ArticlesController::class)->only([
+    Route::apiResource('articles', \App\Http\Controllers\API\ArticleController::class)->only([
         'store', 'show', 'index', 'update', 'destroy'
     ]);
 

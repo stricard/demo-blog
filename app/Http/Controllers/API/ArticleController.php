@@ -7,11 +7,11 @@ use App\Http\Requests\API\StoreArticleRequest;
 use App\Http\Requests\API\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\ArticleStatus;
-use App\Services\Article as ArticleService;
+use App\Services\ArticleManager as ArticleService;
 use App\Http\Resources\Article as ArticleResource;
 use App\Definitions\HttpStatusCode;
 
-class ArticlesController extends APIController
+class ArticleController extends APIController
 {
 
     /**

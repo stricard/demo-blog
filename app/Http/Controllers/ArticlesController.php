@@ -17,9 +17,4 @@ class ArticlesController extends Controller
             'articlesStatus' => ArticleStatus::all()
         ]);
     }
-
-    public function store(Request $request)
-    {
-        dd($request);
-    }
 }
