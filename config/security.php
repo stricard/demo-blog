@@ -18,6 +18,7 @@ return [
         'Sylvain' => env('SYLVAIN_API_KEY'),
         'Zelty' => env('ZELTY_API_KEY'),
         'DemoApp' => env('APP_API_KEY'),
+        'PHPUnit' => env('PHPUNIT_API_KEY'),
 
     ]
 ];
