@@ -2,6 +2,8 @@
 
 use App\Exceptions\Problems\InvalidAPIKeysException;
 use App\Definitions\HttpStatusCode;
+use App\Exceptions\Problems\RequestValidationException;
+use App\Exceptions\Problems\ArticleAlreadyExists;
 
 return [
 
@@ -22,6 +24,18 @@ return [
         'type' => 'invalid-api-key',
         'title' => 'Unauthorized access',
         'status' => HttpStatusCode::HTTP_UNAUTHORIZED,
+    ],
+
+    RequestValidationException::class => [
+        "type" => "validation-error",
+        "title" => "Your request parameters didn't validate.",
+        "status" => HttpStatusCode::HTTP_BAD_REQUEST,
+    ],
+
+    ArticleAlreadyExists::class => [
+        "type" => "article-already-exists",
+        "title" => "Already existing article.",
+        "status" => HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY,
     ],
 
     'default' => [

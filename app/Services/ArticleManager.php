@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\Article as ObjArticle;
+use App\Exceptions\Problems\ArticleAlreadyExists;
+use App\Models\Article;
 use App\Models\ArticleStatus;
 use App\Http\Resources\ArticleStatus as ArticleStatusResource;
 use Illuminate\Support\Facades\Cache;
 
-class Article
+class ArticleManager
 {
     public $articles_status;
 
@@ -18,8 +19,14 @@ class Article
 
     public static function createArticle(array $data_article)
     {
+        //on vérifie qu'il n'y a pas d'article avec le même titre
+        $existingArticle = Article::query()->where('title', $data_article['title'])->first();
+
+        if (!empty($existingArticle))
+            throw new ArticleAlreadyExists($data_article['title']);
+
         //on créé notre objet article
-        $article = new ObjArticle;
+        $article = new Article;
         $article->title = $data_article['title'];
         $article->contents = $data_article['contents'];
         $article->user_id = $data_article['user_id'];
@@ -39,7 +46,7 @@ class Article
         return $article;
     }
 
-    public static function updateArticle(array $data_article, ObjArticle $article)
+    public static function updateArticle(array $data_article, Article $article)
     {
         //on modifie notre objet article
         $article->title = $data_article['title'] ?? $article->title;
