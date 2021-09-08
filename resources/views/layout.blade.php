@@ -29,9 +29,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="./">Home</a>
-                        <a class="nav-link {{ Request::is('articles') ? 'active' : '' }}" href="./articles">Articles</a>
-                        <a class="nav-link {{ Request::is('doc-api') ? 'active' : '' }}" href="./doc-api">Doc API</a>
+                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="./" style="padding-left: 15px; padding-right: 15px;">Home</a>
+                        <a class="nav-link {{ Request::is('articles') ? 'active' : '' }}" href="./articles" style="padding-left: 15px; padding-right: 15px;">Articles</a>
+                        <a class="nav-link {{ Request::is('doc-api') ? 'active' : '' }}" href="./doc-api" style="padding-left: 15px; padding-right: 15px;">Doc API</a>
+                        <a class="nav-link" href="./coverage/index.html" target="_blank" style="padding-left: 15px; padding-right: 15px;">PHPUnit Code Coverage
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5z"></path>
+                                <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0v-5z"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
