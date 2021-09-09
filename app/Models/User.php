@@ -24,6 +24,5 @@ class User extends Model
         'updated_at'
     ];
 
-    public $timestamps=true;
 
 }

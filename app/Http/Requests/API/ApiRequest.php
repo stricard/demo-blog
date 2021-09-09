@@ -2,8 +2,8 @@
 namespace App\Http\Requests\API;
 
 use App\Exceptions\Problems\RequestValidationException;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * APIRequest Base
@@ -12,6 +12,15 @@ use Illuminate\Contracts\Validation\Validator;
  */
 abstract class ApiRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Comportement en cas d'échec de validation

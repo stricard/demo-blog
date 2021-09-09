@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Definitions\HttpStatusCode;
 use App\Exceptions\Problems\InvalidAPIKeysException;
 
 class CheckAPIKey

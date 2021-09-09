@@ -4,6 +4,7 @@ use App\Exceptions\Problems\InvalidAPIKeysException;
 use App\Definitions\HttpStatusCode;
 use App\Exceptions\Problems\RequestValidationException;
 use App\Exceptions\Problems\ArticleAlreadyExists;
+use App\Exceptions\Problems\ResourceNotFoundException;
 
 return [
 
@@ -36,6 +37,12 @@ return [
         "type" => "article-already-exists",
         "title" => "Already existing article.",
         "status" => HttpStatusCode::HTTP_UNPROCESSABLE_ENTITY,
+    ],
+
+    ResourceNotFoundException::class => [
+        "type" => "resource-not-found",
+        "title" => "This Resource is not found.",
+        "status" => HttpStatusCode::HTTP_NOT_FOUND,
     ],
 
     'default' => [

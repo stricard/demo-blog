@@ -32,6 +32,9 @@ abstract class APIProblemException extends \Exception implements RenderableExcep
     protected array $customAttributes = [];
 
 
+    /**
+     * APIProblemException constructor.
+     */
     public function __construct()
     {
         parent::__construct();

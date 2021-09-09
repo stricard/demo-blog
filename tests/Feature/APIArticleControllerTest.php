@@ -71,7 +71,7 @@ class APIArticleControllerTest extends TestCase
     }
 
     /**
-     * @GET /articles/{id}
+     * @POST /articles
      * @dataProvider dataProviderCreateArticleWithExistingArticle
      * @param array $params
      */
@@ -88,11 +88,6 @@ class APIArticleControllerTest extends TestCase
     }
 
 
-
-
-
-
-
     /**
      * ---------- DATA PROVIDERS ----------
      * @see : https://phpunit.readthedocs.io/fr/latest/writing-tests-for-phpunit.html#writing-tests-for-phpunit-data-providers-examples-datatest-php
@@ -100,13 +95,13 @@ class APIArticleControllerTest extends TestCase
 
     public function dataProviderSearchArticlesWithBadParameters(): \Iterator
     {
-        yield 'Title invalid' => [
+        yield 'Title invalid(too long)' => [
             [
                 'title' => 'loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum ',
                 'autor' => 'TEST',
             ]
         ];
-        yield 'Autor invalid' => [
+        yield 'Author invalid (too long)' => [
             [
                 'title' => 'loremipsum loremipsum loremipsum loremipsum',
                 'autor' => 'loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exceptions\Problems\ResourceNotFoundException;
 use App\Http\Requests\API\SearchUserRequest;
 use App\Http\Requests\API\StoreUserRequest;
 use App\Http\Requests\API\UpdateUserRequest;
@@ -39,11 +40,16 @@ class UserController extends APIController
     /**
      * @GET : api/users/{id}
      * Affiche la ressource demandée
-     * @param Integer $userId
+     * @param int $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws ResourceNotFoundException
      */
-    public function show(User $user)
+    public function show(int $id)
     {
+        $user = User::find($id);
+        if (empty($user))
+            throw new ResourceNotFoundException('users');
+
         $user = new UserResource($user);
 
         return response()->json($user);

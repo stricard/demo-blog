@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Definitions\HttpStatusCode;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class AccessTest extends TestCase

@@ -2,8 +2,7 @@
 
 namespace Tests;
 
-use App\Exceptions\Problems\{APIProblemException,
-    ArticleAlreadyExists,
+use App\Exceptions\Problems\{ArticleAlreadyExists,
     InvalidAPIKeysException,
     RequestValidationException};
 

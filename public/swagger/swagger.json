@@ -37,7 +37,7 @@
                 "description": "",
                 "operationId": "storeUser",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/x-www-form-urlencoded"
                 ],
                 "produces": [
                     "application/json"
@@ -125,7 +125,7 @@
                 ]
             }
         },
-        "/user/{userId}": {
+        "/users/{userId}": {
             "get": {
                 "tags": [
                     "users"
@@ -174,7 +174,7 @@
                 "description": "",
                 "operationId": "updateUser",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/x-www-form-urlencoded"
                 ],
                 "produces": [
                     "application/json"
@@ -276,7 +276,7 @@
                 "description": "",
                 "operationId": "storeArticle",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/x-www-form-urlencoded"
                 ],
                 "produces": [
                     "application/json"
@@ -363,6 +363,13 @@
                         "description": "Nom de l'auteur",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "name": "status_id",
+                        "in": "query",
+                        "description": "Id du status",
+                        "required": false,
+                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -379,6 +386,12 @@
                         "description": "Paramètres invalides",
                         "schema": {
                             "$ref": "#/definitions/400_ValidationError"
+                        }
+                    },
+                    "422": {
+                        "description": "Titre existant",
+                        "schema": {
+                            "$ref": "#/definitions/422_ArticleAlreadyExists"
                         }
                     }
                 },
@@ -438,7 +451,7 @@
                 "description": "",
                 "operationId": "updateArticle",
                 "consumes": [
-                    "multipart/form-data"
+                    "application/x-www-form-urlencoded"
                 ],
                 "produces": [
                     "application/json"
@@ -729,6 +742,34 @@
                 "detail": {
                     "type": "string",
                     "example": "[Model] [id] appear to be not existing "
+                }
+            }
+        },
+        "422_ArticleAlreadyExists": {
+            "description": "The resource Article already exists with this title",
+            "required": [
+                "type",
+                "title",
+                "status",
+                "detail"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "example": "/problems/article-already-exists"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Already existing article."
+                },
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 422
+                },
+                "detail": {
+                    "type": "string",
+                    "example": "Un article ayant le titre [title] existe déjà."
                 }
             }
         }

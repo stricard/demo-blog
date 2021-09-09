@@ -41,20 +41,4 @@ class Article extends Model
         'status_id'
     ];
 
-    public $timestamps=true;
-
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::created(function ($user) {
-            /*$user->user_id = intval($user->user_id);
-            $user->status_id = intval($user->status_id);
-            dd($user);*/
-        });
-        parent::booted();
-    }
 }
