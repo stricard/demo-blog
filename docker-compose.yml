@@ -1,0 +1,9 @@
+services:
+
+  # Serveur PHP
+  php:
+    build: ./automation/php/
+    ports:
+      - 8050:8000
+    volumes:
+      - ./:/app
