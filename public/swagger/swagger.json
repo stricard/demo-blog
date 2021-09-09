@@ -358,7 +358,7 @@
                         "type": "string"
                     },
                     {
-                        "name": "autor",
+                        "name": "author",
                         "in": "query",
                         "description": "Nom de l'auteur",
                         "required": false,

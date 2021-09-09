@@ -98,13 +98,13 @@ class APIArticleControllerTest extends TestCase
         yield 'Title invalid(too long)' => [
             [
                 'title' => 'loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum ',
-                'autor' => 'TEST',
+                'author' => 'TEST',
             ]
         ];
         yield 'Author invalid (too long)' => [
             [
                 'title' => 'loremipsum loremipsum loremipsum loremipsum',
-                'autor' => 'loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum',
+                'author' => 'loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum loremipsum',
             ]
         ];
     }

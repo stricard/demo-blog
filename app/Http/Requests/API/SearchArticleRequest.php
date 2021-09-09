@@ -19,7 +19,7 @@ class SearchArticleRequest extends ApiRequest
             'size' => ['sometimes', 'required', 'integer'],
 
             'title' => ['sometimes', 'required', 'string', 'max:128'],
-            'autor' => ['sometimes', 'required', 'string', 'max:64'],
+            'author' => ['sometimes', 'required', 'string', 'max:64'],
             'status_id' => ['sometimes', 'required', 'integer', new ValidArticleStatus]
         ];
     }

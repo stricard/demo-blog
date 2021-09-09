@@ -2,8 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Models\Article;
 use App\Services\ArticleManager;
 use Tests\TestCase;
+use Faker\Generator as Faker;
 
 class ArticleManagerTest extends TestCase
 {
@@ -14,6 +16,7 @@ class ArticleManagerTest extends TestCase
         parent::setUp();
         $this->articleManager = new ArticleManager();
     }
+
 
     public function test_article_manager()
     {

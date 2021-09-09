@@ -75,7 +75,7 @@ Résultat :
    PASS  Tests\Feature\APIArticleControllerTest
   ✓ api articles with wrong apikey
   ✓ get articles with bad parameters with data set "Title invalid"
-  ✓ get articles with bad parameters with data set "Autor invalid"
+  ✓ get articles with bad parameters with data set "author invalid"
   ✓ get articles
   ✓ show article with data set "Premier article créé via le seeder"
   ✓ create article with existing article with data set "Titre existant"

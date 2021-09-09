@@ -23,7 +23,7 @@ class ArticleController extends APIController
      */
     public function index(SearchArticleRequest $request){
         $title = $request->validated()['title'] ?? null;
-        $autor = $request->validated()['autor'] ?? null;
+        $author = $request->validated()['author'] ?? null;
         $status_id = $request->validated()['status_id'] ?? null;
 
         $articles = Article::query();
@@ -31,8 +31,8 @@ class ArticleController extends APIController
         if(!empty($title))
             $articles->where('title', 'like', $title);
 
-        if(!empty($autor))
-            $articles->where('user_id', $autor);
+        if(!empty($author))
+            $articles->where('user_id', $author);
 
         if(!empty($status_id))
             $articles->where('status_id', $status_id);
