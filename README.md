@@ -12,6 +12,8 @@ Cette application est livrée avec un ensemble de jeux de tests et de données d
 La procédure d'installation est relativement simple : 
 
 #### Avec docker : 
+>Nécessite d'avoir Docker Desktop (pour windows ou Mac).
+
 Dans le répertoire courant, lancez la commande (pour windows) : 
 ```console
 docker-start.cmd
