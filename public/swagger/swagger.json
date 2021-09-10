@@ -331,6 +331,12 @@
                         "schema": {
                             "$ref": "#/definitions/400_ValidationError"
                         }
+                    },
+                    "422": {
+                        "description": "Titre existant",
+                        "schema": {
+                            "$ref": "#/definitions/422_ArticleAlreadyExists"
+                        }
                     }
                 },
                 "security": [
@@ -386,12 +392,6 @@
                         "description": "Paramètres invalides",
                         "schema": {
                             "$ref": "#/definitions/400_ValidationError"
-                        }
-                    },
-                    "422": {
-                        "description": "Titre existant",
-                        "schema": {
-                            "$ref": "#/definitions/422_ArticleAlreadyExists"
                         }
                     }
                 },
@@ -512,6 +512,12 @@
                         "description": "Ressource inexistante",
                         "schema": {
                             "$ref": "#/definitions/404_ResourceNotFound"
+                        }
+                    },
+                    "422": {
+                        "description": "Titre existant",
+                        "schema": {
+                            "$ref": "#/definitions/422_ArticleAlreadyExists"
                         }
                     }
                 },
@@ -682,7 +688,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "example": "problems/validation-error"
+                    "example": "validation-error"
                 },
                 "title": {
                     "type": "string",
@@ -728,7 +734,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "example": "/problems/resource-not-found"
+                    "example": "resource-not-found"
                 },
                 "title": {
                     "type": "string",
@@ -756,7 +762,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "example": "/problems/article-already-exists"
+                    "example": "article-already-exists"
                 },
                 "title": {
                     "type": "string",
